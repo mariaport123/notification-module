@@ -16,10 +16,10 @@ public class PublicNotificationController {
     }
 
     /**
-     * Get the current active notification
+     * Get the current active notification for public view
      */
-    @GetMapping("/status")
-    public NotificationResponse getStatus() {
+    @GetMapping("/notification") // Changed from /status to /notification
+    public NotificationResponse getActiveNotification() {
         return notificationService.getActiveNotification();
     }
 }
