@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PublicAnnouncement } from './public-announcement';
+import { PublicAnnouncementComponent } from './public-announcement';
 
 describe('PublicAnnouncement', () => {
-  let component: PublicAnnouncement;
-  let fixture: ComponentFixture<PublicAnnouncement>;
+  let component: PublicAnnouncementComponent;
+  let fixture: ComponentFixture<PublicAnnouncementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PublicAnnouncement],
+      imports: [PublicAnnouncementComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PublicAnnouncement);
+    fixture = TestBed.createComponent(PublicAnnouncementComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

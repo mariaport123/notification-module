@@ -1,0 +1,27 @@
+<div class="admin-wrapper">
+    <h2>Admin Panel - Manage Notifications</h2>
+
+    <div class="form-group">
+        <label for="title">Notification Title</label>
+        <input id="title" [(ngModel)]="notification.title" placeholder="Enter title (e.g., Maintenance)">
+    </div>
+
+    <div class="form-group">
+        <label for="content">Notification Content</label>
+        <textarea id="content" [(ngModel)]="notification.content" placeholder="Enter detailed message"></textarea>
+    </div>
+
+    <div class="form-group checkbox">
+        <input type="checkbox" id="active" [(ngModel)]="notification.active">
+        <label for="active">Set as Active</label>
+    </div>
+
+    <button (click)="save()" class="save-btn">Update System Status</button>
+
+    <p *ngIf="message" class="status-message" [class.error-text]="isError">
+        {{ message }}
+    </p>
+
+    <hr>
+    <a routerLink="/">← Back to Public View</a>
+</div>

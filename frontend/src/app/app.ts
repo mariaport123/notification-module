@@ -1,14 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PublicAnnouncementComponent } from './components/public-announcement/public-announcement';
 
 @Component({
   selector: 'app-root',
   standalone: true, 
-  imports: [RouterOutlet, PublicAnnouncementComponent],
+  imports: [RouterOutlet], 
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
+  /**
+   * Application title managed via Angular signals.
+   */
   protected readonly title = signal('frontend');
 }
