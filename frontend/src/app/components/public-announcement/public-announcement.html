@@ -1,0 +1,22 @@
+<div class="announcement-container" *ngIf="notification">
+  
+  <div class="status-header">
+    <h2>{{ notification.title || 'System Status' }}</h2>
+    <span [class.operational]="notification.systemOperational" class="status-badge">
+      {{ notification.systemOperational ? 'Operational' : 'Maintenance' }}
+    </span>
+  </div>
+
+  <div class="content">
+    <p>{{ notification.content }}</p>
+  </div>
+
+  <div class="footer">
+    <small>Server Time: {{ notification.serverTime | date:'medium' }}</small>
+    <div class="contact">Support: {{ notification.supportContact }}</div>
+  </div>
+</div>
+
+<div *ngIf="!notification" class="loading">
+  <p>Connecting to system services...</p>
+</div>
