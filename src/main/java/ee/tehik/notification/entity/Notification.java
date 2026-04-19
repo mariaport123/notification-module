@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -26,4 +27,10 @@ public class Notification {
 
     // Indicates if this specific notification should be shown to users
     private boolean active;
+
+    private boolean systemOperational;
+    
+    private LocalDateTime serverTime = LocalDateTime.now();
+    
+    private String supportContact;
 }

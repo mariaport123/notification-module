@@ -12,14 +12,17 @@ public class NotificationService {
 
     private final NotificationRepository repository;
     
-    // Fixed support contact 
+    // Support contact details used across the service
     private static final String SUPPORT_CONTACT = "Customer Support: support@tehik.ee | +372 600 0000";
 
     public NotificationService(NotificationRepository repository) {
         this.repository = repository;
     }
 
-    // This method decides what the Public API returns
+    /**
+     * Retrieves the current active notification from the database.
+     * If no active notification is found, returns a default "systems operational" status.
+     */
     public NotificationResponse getActiveNotification() {
         return repository.findFirstByActiveTrue()
             .map(n -> new NotificationResponse(
@@ -27,18 +30,20 @@ public class NotificationService {
                 n.getContent(),
                 LocalDateTime.now(),
                 SUPPORT_CONTACT,
-                false // systemOperational is false because there's an active alert/info
+                false // System is under maintenance or has an active alert
             ))
             .orElseGet(() -> new NotificationResponse(
-                null,
-                null,
+                "Systems Operational",
+                "All services are running smoothly. No active maintenance at the moment.",
                 LocalDateTime.now(),
                 SUPPORT_CONTACT,
-                true // No active notification means systems are operational
+                true // No active alerts found, system is healthy
             ));
     }
 
-    // Method for Admin to save a new or updated notification
+    /**
+     * Saves or updates a notification record in the database.
+     */
     public Notification saveNotification(Notification notification) {
         return repository.save(notification);
     }

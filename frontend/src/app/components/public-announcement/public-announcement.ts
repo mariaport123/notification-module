@@ -13,30 +13,19 @@ import { NotificationResponse } from '../../models/notification.model';
 export class PublicAnnouncementComponent implements OnInit {
   notification: NotificationResponse | null = null;
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-  // Simulate receiving data instead of calling the server
-  this.notification = {
-    title: 'Süsteemi teavitus',
-    content: 'Kõik süsteemid on töökorras. Järgmine hooldus toimub täna kell 22:00.',
-    systemOperational: true,
-    serverTime: new Date().toISOString(),
-    supportContact: 'abi@teavitus.ee'
-  };
-}
-
-  /**
-   * Fetches current notification data from the backend service
-   */
-  private loadNotification(): void {
+    /**
+     * Fetch the notification data from the backend service.
+     */
     this.notificationService.getNotification().subscribe({
       next: (data) => {
         this.notification = data;
       },
       error: (err) => {
-        // Log error to console if the service call fails
-        console.error('Failed to load notification', err);
+        // Professional error logging in the console
+        console.error('Failed to fetch system notification:', err);
       }
     });
   }

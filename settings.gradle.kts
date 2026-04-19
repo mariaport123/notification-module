@@ -1,1 +1,1 @@
-rootProject.name = "notification-module"
+rootProject.name = "notification-module";
