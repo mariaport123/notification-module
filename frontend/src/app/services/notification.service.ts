@@ -7,8 +7,8 @@ import { NotificationResponse } from '../models/notification.model';
   providedIn: 'root'
 })
 export class NotificationService {
-  private readonly publicUrl = 'http://localhost:8080/api/public/status';
-  private readonly adminUrl = 'http://localhost:8080/api/admin/notification';
+  private publicUrl = 'http://localhost:8080/api/public/notification';
+  private adminUrl = 'http://localhost:8080/api/admin/notification';
 
   constructor(private http: HttpClient) { }
 
