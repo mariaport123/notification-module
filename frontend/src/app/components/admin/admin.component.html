@@ -1,27 +1,26 @@
-<div class="admin-wrapper">
-    <h2>Admin Panel - Manage Notifications</h2>
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Update Notification</h2>
+  </div>
 
-    <div class="form-group">
-        <label for="title">Notification Title</label>
-        <input id="title" [(ngModel)]="notification.title" placeholder="Enter title (e.g., Maintenance)">
-    </div>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" [(ngModel)]="notification.title" placeholder="e.g., Scheduled Maintenance">
+  </div>
 
-    <div class="form-group">
-        <label for="content">Notification Content</label>
-        <textarea id="content" [(ngModel)]="notification.content" placeholder="Enter detailed message"></textarea>
-    </div>
+  <div class="form-group">
+    <label for="content">Announcement Message</label>
+    <textarea id="content" [(ngModel)]="notification.content" placeholder="Describe the situation..."></textarea>
+  </div>
 
-    <div class="form-group checkbox">
-        <input type="checkbox" id="active" [(ngModel)]="notification.active">
-        <label for="active">Set as Active</label>
-    </div>
+  <label class="checkbox-group">
+    <input type="checkbox" [(ngModel)]="notification.active">
+    <span>Set as Active (Visible on public page)</span>
+  </label>
 
-    <button (click)="save()" class="save-btn">Update System Status</button>
+  <button class="save-button" (click)="save()">
+    Publish Notification
+  </button>
 
-    <p *ngIf="message" class="status-message" [class.error-text]="isError">
-        {{ message }}
-    </p>
-
-    <hr>
-    <a routerLink="/">← Back to Public View</a>
+  <a routerLink="/" class="back-link">Return to Public View</a>
 </div>
