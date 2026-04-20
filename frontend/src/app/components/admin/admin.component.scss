@@ -44,7 +44,6 @@
     color: #374151;
   }
 
-  // Added 'select' here to inherit identical styling with other inputs
   input[type="text"],
   select,
   textarea {
@@ -56,7 +55,7 @@
     color: #111827;
     background-color: #f9fafb;
     transition: border-color 0.2s, box-shadow 0.2s;
-    appearance: none; // Removes default browser styling for a cleaner look
+    appearance: none; 
 
     &:focus {
       outline: none;
@@ -66,7 +65,6 @@
     }
   }
 
-  // Custom styling specifically for the dropdown to ensure a professional look
   select {
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");

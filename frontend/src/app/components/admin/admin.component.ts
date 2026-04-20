@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
     content: '',
     active: true,
     language: 'et',
-    systemOperational: false // Default on Maintenance
+    systemOperational: false 
   };
 
   message = '';
