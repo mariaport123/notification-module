@@ -17,31 +17,38 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(Customizer.withDefaults())
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        // Enable access to H2 Console
-                        .requestMatchers("/h2-console/**").permitAll()
-                        // Allow public access to notification endpoints
-                        .requestMatchers("/api/public/**").permitAll()
-                        // Secure all admin-related endpoints
-                        .requestMatchers("/api/admin/**").authenticated()
-                        .anyRequest().permitAll())
-                // Required to display H2 Console in a browser frame
-                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
-                .httpBasic(Customizer.withDefaults());
+            // Basic CORS and CSRF configuration for API access
+            .cors(Customizer.withDefaults())
+            .csrf(csrf -> csrf.disable())
+            
+            .authorizeHttpRequests(auth -> auth
+                // Allow access to H2 console for debugging
+                .requestMatchers("/h2-console/**").permitAll()
+                // Public endpoints for fetching operational status
+                .requestMatchers("/api/public/**").permitAll()
+                // Secure administrative actions with role-based access
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                // Fallback for any other request
+                .anyRequest().authenticated()
+            )
+            
+            // Allow H2 console to be rendered in frames from the same origin
+            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
+            // Enable standard Basic Authentication
+            .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
+        // Define admin user for the technical assessment
         UserDetails admin = User.builder()
-                .passwordEncoder(password -> "{noop}" + password) 
                 .username("admin")
-                .password("tehik2026")
+                .password("{noop}tehik2026") // No-op encoder for testing purposes
                 .roles("ADMIN")
                 .build();
+        
         return new InMemoryUserDetailsManager(admin);
     }
 }
