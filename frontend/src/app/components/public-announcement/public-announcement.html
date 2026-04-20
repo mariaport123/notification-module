@@ -1,9 +1,17 @@
+<div class="lang-switcher">
+  <button (click)="loadNotification('et')" [class.active]="currentLang === 'et'">ET</button>
+  <button (click)="loadNotification('en')" [class.active]="currentLang === 'en'">EN</button>
+</div>
+
 <div class="announcement-container" *ngIf="notification">
-  
+
   <div class="status-header">
-    <h2>{{ notification.title || 'System Status' }}</h2>
+    <h2>{{ notification.title || (currentLang === 'et' ? 'Süsteemi olek' : 'System Status') }}</h2>
+    
     <span [class.operational]="notification.systemOperational" class="status-badge">
-      {{ notification.systemOperational ? 'Operational' : 'Maintenance' }}
+      {{ notification.systemOperational ? 
+         (currentLang === 'et' ? 'TÖÖKORRAS' : 'OPERATIONAL') : 
+         (currentLang === 'et' ? 'HOOLDUS' : 'MAINTENANCE') }}
     </span>
   </div>
 
@@ -12,11 +20,18 @@
   </div>
 
   <div class="footer">
-    <small>Server Time: {{ notification.serverTime | date:'medium' }}</small>
-    <div class="contact">Support: {{ notification.supportContact }}</div>
+    <small>
+      {{ currentLang === 'et' ? 'Serveri aeg' : 'Server Time' }}:
+      {{ notification.serverTime | date:'medium' }}
+    </small>
+
+    <div class="contact">
+      {{ currentLang === 'et' ? 'Kasutajatugi' : 'Support' }}:
+      {{ notification.supportContact }}
+    </div>
   </div>
 </div>
 
 <div *ngIf="!notification" class="loading">
-  <p>Connecting to system services...</p>
+  <p>{{ currentLang === 'et' ? 'Ühendamine teenustega...' : 'Connecting to system services...' }}</p>
 </div>

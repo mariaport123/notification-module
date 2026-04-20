@@ -9,4 +9,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     // Finds the notification that is currently active. 
     // We assume only one is active at a time for simplicity.
     Optional<Notification> findFirstByActiveTrueOrderByIdDesc();
+    Optional<Notification> findByActiveTrueAndLanguage(String language);
+    void deleteByLanguage(String language);
 }

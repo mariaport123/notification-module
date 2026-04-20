@@ -12,12 +12,15 @@ export class NotificationService {
 
   constructor(private http: HttpClient) { }
 
-  /**
+/**
    * Fetches the current system status or active notification for the public view.
+   * Supports language filtering via a query parameter.
+   * @param lang Optional language code (defaults to 'et').
    * @returns An Observable of NotificationResponse containing the status details.
    */
-  getNotification(): Observable<NotificationResponse> {
-    return this.http.get<NotificationResponse>(this.publicUrl);
+  getNotification(lang: string = 'et'): Observable<NotificationResponse> {
+    // Appends the language parameter to the request URL
+    return this.http.get<NotificationResponse>(`${this.publicUrl}?lang=${lang}`);
   }
 
   /**

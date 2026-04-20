@@ -28,6 +28,9 @@ public class Notification {
     // Indicates if this specific notification should be shown to users
     private boolean active;
 
+    // Language code (e.g., "et", "en") for multi-language support
+    private String language;
+
     private boolean systemOperational;
     
     private LocalDateTime serverTime = LocalDateTime.now();

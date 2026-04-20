@@ -4,6 +4,14 @@
   </div>
 
   <div class="form-group">
+    <label for="language">Language / Keel</label>
+    <select id="language" [(ngModel)]="notification.language" (change)="loadAdminData()" class="language-select">
+      <option value="et">Estonian (ET)</option>
+      <option value="en">English (EN)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
     <label for="title">Title</label>
     <input type="text" id="title" [(ngModel)]="notification.title" placeholder="e.g., Scheduled Maintenance">
   </div>
@@ -14,8 +22,8 @@
   </div>
 
   <label class="checkbox-group">
-    <input type="checkbox" [(ngModel)]="notification.active">
-    <span>Set as Active (Visible on public page)</span>
+    <input type="checkbox" [(ngModel)]="notification.systemOperational">
+    <span>Is this just an announcement? (Green/Operational style)</span>
   </label>
 
   <button class="save-button" (click)="save()">

@@ -16,10 +16,11 @@ public class PublicNotificationController {
     }
 
     /**
-     * Get the current active notification for public view
+     * Get the current active notification for public view.
+     * Supports optional language filtering via ?lang= query parameter.
      */
-    @GetMapping("/notification") // Changed from /status to /notification
-    public NotificationResponse getActiveNotification() {
-        return notificationService.getActiveNotification();
+    @GetMapping("/notification")
+    public NotificationResponse getNotification(@RequestParam(required = false) String lang) {
+        return notificationService.getActiveNotification(lang); 
     }
 }
